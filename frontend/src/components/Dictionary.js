@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-
+import NewEntry from './NewEntry'
 const API_URL = process.env.REACT_APP_API_URL
 
 export default class extends Component {
@@ -18,11 +18,12 @@ export default class extends Component {
     render () {
         
         const displayEntries = this.state.entries.map(entry => 
-        <p key={entry._id}>{entry.name}: {entry.definition}</p>)
+        <p key={entry._id}>{`>${entry.name}: ${entry.definition}`} </p>)
     
         return (
             <div>
                 <h1>Coding Dictionary</h1>
+                <NewEntry refresh={this.refresh}/>
                 {displayEntries}
             </div>
         )
