@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
+import Button from 'react-bootstrap/Button'
 import NewEntry from './NewEntry'
+
 const API_URL = process.env.REACT_APP_API_URL
 
 export default class extends Component {
@@ -12,13 +14,24 @@ export default class extends Component {
         .then(entries => this.setState({entries}))
     }
 
+    handleDelete = (entry) => {
+        fetch(`${API_URL}dictionary/${entry._id}`, {
+            method: 'DELETE'
+        })
+        .then(this.refresh)
+    }
+
     componentDidMount(){
         this.refresh()
     }
+    
     render () {
         
         const displayEntries = this.state.entries.map(entry => 
-        <p key={entry._id}>{`>${entry.name}: ${entry.definition}`} </p>)
+            <div>
+        <span key={entry._id}>{`>${entry.name}: ${entry.definition}`} </span>
+        <Button variant='outline-success' onClick={this.handleDelete.bind(this, entry)}>x</Button>
+        </div>)
     
         return (
             <div>
