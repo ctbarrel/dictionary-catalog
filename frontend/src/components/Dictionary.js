@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import Button from 'react-bootstrap/Button'
 import NewEntry from './NewEntry'
-
+import UpdateEntry from './UpdateEntry'
 const API_URL = process.env.REACT_APP_API_URL
 
 export default class extends Component {
@@ -30,6 +30,7 @@ export default class extends Component {
         const displayEntries = this.state.entries.map(entry => 
             <div>
         <span key={entry._id}>{`>${entry.name}: ${entry.definition}`} </span>
+        <UpdateEntry refresh={this.refresh} entry={entry}/>
         <Button variant='outline-success' onClick={this.handleDelete.bind(this, entry)}>x</Button>
         </div>)
     
