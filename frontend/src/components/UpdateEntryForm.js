@@ -16,7 +16,8 @@ export default class UpdateEntryForm extends Component {
     }
 
     handleChange = ({ target }) => {
-        this.setState({ [target.name]: target.value })
+        let value = target.type === 'checkbox' ? target.checked : target.value
+        this.setState({ [target.name]: value })
     }
 
     handleSubmit = (event) => {
@@ -51,6 +52,14 @@ export default class UpdateEntryForm extends Component {
                     onChange={this.handleChange}
                     required
                 />
+
+                {' '}<span>
+                    <label htmlFor='archived'>Archived?</label>
+                    <input name='archived'
+                    checked={this.state.archived}
+                    type='checkbox'
+                    onChange={this.handleChange} />
+                </span>
 
                 {' '}<Button variant="outline-success" onClick={this.handleSubmit}>
                     Update Entry

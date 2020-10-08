@@ -11,7 +11,7 @@ function UpdateEntryModal(props) {
       centered
     >
       <Modal.Header className='input-form' closeButton>
-        Update 
+        Update Entry
       </Modal.Header>
 
       <Modal.Body>
@@ -30,7 +30,7 @@ export default function UpdateEntry({ refresh, entry }) {
         onClick={() => {
         setModalShow(true)
       }}>
-        Update New Entry
+        Edit
       </Button>
 
       <UpdateEntryModal
